@@ -1,11 +1,12 @@
 import asyncio
 import datetime
 import os, sys
-from bot import NotSoBot
+from bot import NotSoBot, DEV_MODE
 
 loop = asyncio.get_event_loop()
 
-dev_mode = str(os.getenv('dev_mode', False))
+dev_mode = 'false'
+
 if dev_mode == '1' or dev_mode.lower() == 'true':
 	dev_mode = True
 else:

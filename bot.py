@@ -9,6 +9,10 @@ from sqlalchemy.orm import scoped_session, sessionmaker
 from utils import checks
 from utils.funcs import Funcs
 
+BOT_TOKEN = ""
+BOT_DEV_TOKEN = ""
+NOTSOSUPER_TOKEN = ""
+
 #Discord Code Block Formats
 code = "```py\n{0}\n```"
 diff = "```diff\n{0}\n```"
@@ -118,10 +122,10 @@ class NotSoBot(commands.Bot):
 		self.loop = kwargs.pop('loop', asyncio.get_event_loop())
 		asyncio.get_child_watcher().attach_loop(self.loop)
 		self.dev_mode = kwargs.pop('dev_mode', False)
-		self.token = os.getenv('bot_token') if not self.dev_mode else os.getenv('bot_beta_token')
+		self.token = BOT_TOKEN if not self.dev_mode else BOT_DEV_TOKEN
 		self.self_bot = kwargs.pop('self_bot', False)
 		if self.self_bot:
-			self.token = os.getenv('notsosuper_token')
+			self.token = NOTSOSUPER_TOKEN
 		shard_id = kwargs.get('shard_id', 0)
 		command_prefix = kwargs.pop('command_prefix', commands.when_mentioned_or('.'))
 		init_logging(shard_id, self)
